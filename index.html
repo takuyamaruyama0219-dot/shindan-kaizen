@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>おうちの火災保険　受給診断 | 無料で適用可能性がわかる</title>
+  <meta name="description" content="たった60秒の簡単診断で、火災保険の適用可能性がわかります。9つの質問に答えるだけ。完全無料。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ========== ヘッダー ========== -->
+  <header class="header">
+    <div class="header__inner">
+      <div class="header__logo">
+        <span class="header__logo-icon">🏠</span>
+        <span class="header__logo-text">おうちの火災保険　受給診断</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== ファーストビュー ========== -->
+  <section class="hero">
+    <div class="hero__inner">
+      <p class="hero__sub">火災保険、使えるかも？</p>
+      <h1 class="hero__title">
+        おうちの<br>
+        <span class="hero__title-large">火災保険</span><br>
+        <span class="hero__title-accent">受給診断</span>
+      </h1>
+      <div class="hero__badge">
+        <span class="hero__badge-text">たった<strong>60秒</strong>で<br>わかる！</span>
+      </div>
+      <div class="hero__phone">
+        <div class="hero__phone-screen">
+          <div class="hero__phone-content">
+            <div class="hero__phone-header">
+              <span class="hero__phone-header-icon">🏠</span>
+              <span class="hero__phone-header-text">受給診断</span>
+            </div>
+            <div class="hero__phone-checklist">
+              <div class="hero__phone-check-item hero__phone-check-item--done">
+                <span class="hero__phone-check-icon">✓</span>
+                <span class="hero__phone-check-text">築年数</span>
+              </div>
+              <div class="hero__phone-check-item hero__phone-check-item--done">
+                <span class="hero__phone-check-icon">✓</span>
+                <span class="hero__phone-check-text">建物の種類</span>
+              </div>
+              <div class="hero__phone-check-item hero__phone-check-item--done">
+                <span class="hero__phone-check-icon">✓</span>
+                <span class="hero__phone-check-text">被害状況</span>
+              </div>
+              <div class="hero__phone-check-item hero__phone-check-item--active">
+                <span class="hero__phone-check-icon">●</span>
+                <span class="hero__phone-check-text">保険の種類</span>
+              </div>
+              <div class="hero__phone-check-item">
+                <span class="hero__phone-check-icon">○</span>
+                <span class="hero__phone-check-text">お住まいの地域</span>
+              </div>
+            </div>
+            <div class="hero__phone-btn">診断結果を見る</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 信頼性訴求セクション ========== -->
+  <section class="trust">
+    <div class="trust__inner">
+      <button class="btn-cta btn-cta--trust" id="js-start-trust">
+        <span>診断スタート</span>
+        <span class="btn-cta__arrow">›</span>
+      </button>
+      <p class="trust__lead"><span class="trust__lead-accent">かんたんな質問</span>に答えるだけ</p>
+      <p class="trust__desc">
+        お家の状態から<br>
+        火災保険の適用可能性が<br>
+        <span class="trust__desc-accent">無料</span>でわかっちゃう♪
+      </p>
+      <p class="trust__note">※持ち家（一軒家）の方が対象です<br>※診断結果を知るにはLINE登録が必要です</p>
+
+      <div class="trust__stats">
+        <div class="trust__stat-card">
+          <p class="trust__stat-label">平均受給額</p>
+          <p class="trust__stat-number"><span class="trust__stat-big">105</span><small>万円</small></p>
+          <p class="trust__stat-sub">※過去実績より</p>
+        </div>
+        <div class="trust__stat-card">
+          <p class="trust__stat-label">平均認定率</p>
+          <p class="trust__stat-number"><span class="trust__stat-big">86</span><small>%</small></p>
+          <p class="trust__stat-sub">※過去実績より</p>
+        </div>
+      </div>
+
+      <div class="trust__scroll-hint">
+        <span class="trust__scroll-icon">⌄</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== サービス説明 → 診断直結セクション ========== -->
+  <section class="service">
+    <div class="service__inner">
+      <div class="service__character">
+        <div class="service__character-img">🧑‍💼</div>
+        <div class="service__character-bubble">
+          <p>お家の気になる箇所を<br>選んでみましょう！</p>
+        </div>
+      </div>
+      <p class="service__lead">あなたのお家の状態から</p>
+      <p class="service__main">
+        適用可能性を<br>
+        <span class="service__main-large">診断</span>します
+      </p>
+      <p class="service__sub">情報収集がラクチンに♪</p>
+
+      <!-- ========== 診断コンテンツ ========== -->
+      <div class="shindan" id="js-shindan">
+        <div class="shindan__inner">
+
+          <!-- プログレス -->
+          <div class="shindan__progress">
+            <p class="shindan__step-text">
+              <span id="js-step-current">1</span>問目 / 9問中
+            </p>
+            <p class="shindan__time">(所要時間：約60秒)</p>
+            <div class="shindan__dots" id="js-dots">
+              <span class="shindan__dot shindan__dot--current" data-step="1"></span>
+              <span class="shindan__dot" data-step="2"></span>
+              <span class="shindan__dot" data-step="3"></span>
+              <span class="shindan__dot" data-step="4"></span>
+              <span class="shindan__dot" data-step="5"></span>
+              <span class="shindan__dot" data-step="6"></span>
+              <span class="shindan__dot" data-step="7"></span>
+              <span class="shindan__dot" data-step="8"></span>
+              <span class="shindan__dot" data-step="9"></span>
+            </div>
+          </div>
+
+          <!-- 質問カード -->
+          <div class="shindan__cards" id="js-cards">
+
+            <!-- Q1: 住居タイプ（単一選択） -->
+            <div class="shindan__card shindan__card--active" data-question="1">
+              <h2 class="shindan__question">今のお住まいはどちらですか？</h2>
+              <div class="shindan__options shindan__options--radio">
+                <button class="shindan__option-radio" data-value="持ち家（一軒家）" data-q="1">
+                  <span>持ち家（一軒家）</span>
+                </button>
+                <button class="shindan__option-radio" data-value="持ち家（マンション）" data-q="1">
+                  <span>持ち家（マンション）</span>
+                </button>
+                <button class="shindan__option-radio" data-value="賃貸" data-q="1">
+                  <span>賃貸</span>
+                </button>
+                <button class="shindan__option-radio" data-value="その他（物件オーナー）" data-q="1">
+                  <span>その他（物件オーナー）</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Q2: 火災保険加入（単一選択） -->
+            <div class="shindan__card" data-question="2">
+              <h2 class="shindan__question">火災保険に加入していますか？</h2>
+              <div class="shindan__options shindan__options--radio">
+                <button class="shindan__option-radio" data-value="はい" data-q="2">
+                  <span>はい</span>
+                </button>
+                <button class="shindan__option-radio" data-value="いいえ" data-q="2">
+                  <span>いいえ</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Q3: 屋根まわり（複数選択） -->
+            <div class="shindan__card" data-question="3">
+              <div class="shindan__card-img">
+                <img src="images/3.jpg" alt="屋根まわり" width="480" height="320" loading="lazy">
+              </div>
+              <h2 class="shindan__question">"屋根まわり"で当てはまるものはありますか？<span class="shindan__multi-label">（複数選択可）</span></h2>
+              <div class="shindan__options shindan__options--checkbox">
+                <label class="shindan__option-check">
+                  <input type="checkbox" name="q3" value="屋根瓦のズレ・割れ">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">屋根瓦のズレ・割れ</span>
+                </label>
+                <label class="shindan__option-check">
+                  <input type="checkbox" name="q3" value="棟の金属が浮いている">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">棟の金属が浮いている</span>
+                </label>
+                <label class="shindan__option-check">
+                  <input type="checkbox" name="q3" value="雨どいの外れ・傾き・割れ">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">雨どいの外れ・傾き・割れ</span>
+                </label>
+                <label class="shindan__option-check">
+                  <input type="checkbox" name="q3" value="アンテナが傾いている">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">アンテナが傾いている</span>
+                </label>
+                <label class="shindan__option-check">
+                  <input type="checkbox" name="q3" value="ベランダ屋根の割れ・穴">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">ベランダ屋根の割れ・穴</span>
+                </label>
+                <label class="shindan__option-check">
+                  <input type="checkbox" name="q3" value="カーポート屋根の割れ・破損">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">カーポート屋根の割れ・破損</span>
+                </label>
+                <label class="shindan__option-check">
+                  <input type="checkbox" name="q3" value="天井や屋根の雨漏り・シミ">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">天井や屋根の雨漏り・シミ</span>
+                </label>
+                <label class="shindan__option-check shindan__option-check--none">
+                  <input type="checkbox" name="q3" value="特にない" data-none="true">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">特にない</span>
+                </label>
+              </div>
+              <button class="btn-next" data-q="3">
+                <span>次へ</span>
+              </button>
+            </div>
+
+            <!-- Q4: 外壁・建物本体（複数選択） -->
+            <div class="shindan__card" data-question="4">
+              <div class="shindan__card-img">
+                <img src="images/4.jpg" alt="外壁" width="480" height="320" loading="lazy">
+              </div>
+              <h2 class="shindan__question">外壁や建物本体で気になる箇所はありますか？<span class="shindan__multi-label">（複数選択可）</span></h2>
+              <div class="shindan__options shindan__options--checkbox">
+                <label class="shindan__option-check">
+                  <input type="checkbox" name="q4" value="外壁のひび割れ">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">外壁のひび割れ</span>
+                </label>
+                <label class="shindan__option-check">
+                  <input type="checkbox" name="q4" value="外壁の欠け・傷・凹み">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">外壁の欠け・傷・凹み</span>
+                </label>
+                <label class="shindan__option-check">
+                  <input type="checkbox" name="q4" value="外壁に飛来物が当たった跡">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">外壁に飛来物が当たった跡</span>
+                </label>
+                <label class="shindan__option-check">
+                  <input type="checkbox" name="q4" value="基礎（地面付近）のひび割れ">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">基礎（地面付近）のひび割れ</span>
+                </label>
+                <label class="shindan__option-check shindan__option-check--none">
+                  <input type="checkbox" name="q4" value="特にない" data-none="true">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">特にない</span>
+                </label>
+              </div>
+              <button class="btn-next" data-q="4">
+                <span>次へ</span>
+              </button>
+            </div>
+
+            <!-- Q5: 軒まわり（複数選択） -->
+            <div class="shindan__card" data-question="5">
+              <div class="shindan__card-img">
+                <img src="images/5.jpg" alt="軒まわり" width="480" height="320" loading="lazy">
+              </div>
+              <h2 class="shindan__question">軒（のき）まわりで気になる箇所はありますか？<span class="shindan__multi-label">（複数選択可）</span></h2>
+              <div class="shindan__options shindan__options--checkbox">
+                <label class="shindan__option-check">
+                  <input type="checkbox" name="q5" value="軒天井の剥がれ・落下">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">軒天井の剥がれ・落下</span>
+                </label>
+                <label class="shindan__option-check">
+                  <input type="checkbox" name="q5" value="破風板の外れ・割れ">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">破風板の外れ・割れ</span>
+                </label>
+                <label class="shindan__option-check">
+                  <input type="checkbox" name="q5" value="鼻隠し板金の浮き・めくれ">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">鼻隠し板金の浮き・めくれ</span>
+                </label>
+                <label class="shindan__option-check">
+                  <input type="checkbox" name="q5" value="軒下から雨水が垂れてくる">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">軒下から雨水が垂れてくる</span>
+                </label>
+                <label class="shindan__option-check shindan__option-check--none">
+                  <input type="checkbox" name="q5" value="特にない" data-none="true">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">特にない</span>
+                </label>
+              </div>
+              <button class="btn-next" data-q="5">
+                <span>次へ</span>
+              </button>
+            </div>
+
+            <!-- Q6: 外構（複数選択） -->
+            <div class="shindan__card" data-question="6">
+              <div class="shindan__card-img">
+                <img src="images/6.jpg" alt="外構" width="480" height="320" loading="lazy">
+              </div>
+              <h2 class="shindan__question">"外構（カーポート・フェンス・門扉・物置など）"で気になる箇所はありますか？<span class="shindan__multi-label">（複数選択可）</span></h2>
+              <div class="shindan__options shindan__options--checkbox">
+                <label class="shindan__option-check">
+                  <input type="checkbox" name="q6" value="カーポート屋根の割れ・外れ">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">カーポート屋根の割れ・外れ</span>
+                </label>
+                <label class="shindan__option-check">
+                  <input type="checkbox" name="q6" value="フェンスの傾き・曲がり">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">フェンスの傾き・曲がり</span>
+                </label>
+                <label class="shindan__option-check">
+                  <input type="checkbox" name="q6" value="門扉の歪み・閉まりにくい">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">門扉の歪み・閉まりにくい</span>
+                </label>
+                <label class="shindan__option-check">
+                  <input type="checkbox" name="q6" value="物置やポストの倒壊・破損">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">物置やポストの倒壊・破損</span>
+                </label>
+                <label class="shindan__option-check">
+                  <input type="checkbox" name="q6" value="テラス屋根の割れ・破損">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">テラス屋根の割れ・破損</span>
+                </label>
+                <label class="shindan__option-check shindan__option-check--none">
+                  <input type="checkbox" name="q6" value="特にない" data-none="true">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">特にない</span>
+                </label>
+              </div>
+              <button class="btn-next" data-q="6">
+                <span>次へ</span>
+              </button>
+            </div>
+
+            <!-- Q7: 雨漏り・排水（複数選択） -->
+            <div class="shindan__card" data-question="7">
+              <div class="shindan__card-img">
+                <img src="images/7.jpg" alt="雨漏り" width="480" height="320" loading="lazy">
+              </div>
+              <h2 class="shindan__question">雨漏り・排水まわりで気になる箇所はありますか？<span class="shindan__multi-label">（複数選択可）</span></h2>
+              <div class="shindan__options shindan__options--checkbox">
+                <label class="shindan__option-check">
+                  <input type="checkbox" name="q7" value="天井や壁に雨シミ">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">天井や壁に雨シミ</span>
+                </label>
+                <label class="shindan__option-check">
+                  <input type="checkbox" name="q7" value="雨どいの外れ・割れ">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">雨どいの外れ・割れ</span>
+                </label>
+                <label class="shindan__option-check">
+                  <input type="checkbox" name="q7" value="排水の詰まり・水漏れ">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">排水の詰まり・水漏れ</span>
+                </label>
+                <label class="shindan__option-check">
+                  <input type="checkbox" name="q7" value="軒天井の剥がれ・落下">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">軒天井の剥がれ・落下</span>
+                </label>
+                <label class="shindan__option-check shindan__option-check--none">
+                  <input type="checkbox" name="q7" value="特にない" data-none="true">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">特にない</span>
+                </label>
+              </div>
+              <button class="btn-next" data-q="7">
+                <span>次へ</span>
+              </button>
+            </div>
+
+            <!-- Q8: 窓・玄関まわり（複数選択） -->
+            <div class="shindan__card" data-question="8">
+              <div class="shindan__card-img">
+                <img src="images/8.jpg" alt="窓・玄関" width="480" height="320" loading="lazy">
+              </div>
+              <h2 class="shindan__question">窓や玄関まわりで気になる箇所はありますか？<span class="shindan__multi-label">（複数選択可）</span></h2>
+              <div class="shindan__options shindan__options--checkbox">
+                <label class="shindan__option-check">
+                  <input type="checkbox" name="q8" value="窓ガラスの割れ・ヒビ">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">窓ガラスの割れ・ヒビ</span>
+                </label>
+                <label class="shindan__option-check">
+                  <input type="checkbox" name="q8" value="網戸の破れ・外れ">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">網戸の破れ・外れ</span>
+                </label>
+                <label class="shindan__option-check">
+                  <input type="checkbox" name="q8" value="シャッターが歪んで動かない">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">シャッターが歪んで動かない</span>
+                </label>
+                <label class="shindan__option-check">
+                  <input type="checkbox" name="q8" value="雨戸のへこみ・変形">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">雨戸のへこみ・変形</span>
+                </label>
+                <label class="shindan__option-check">
+                  <input type="checkbox" name="q8" value="玄関ドアの歪み・閉まりにくい">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">玄関ドアの歪み・閉まりにくい</span>
+                </label>
+                <label class="shindan__option-check shindan__option-check--none">
+                  <input type="checkbox" name="q8" value="特にない" data-none="true">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">特にない</span>
+                </label>
+              </div>
+              <button class="btn-next" data-q="8">
+                <span>次へ</span>
+              </button>
+            </div>
+
+            <!-- Q9: 家電・家具（複数選択） -->
+            <div class="shindan__card" data-question="9">
+              <div class="shindan__card-img">
+                <img src="images/9.jpg" alt="家電・家具" width="480" height="320" loading="lazy">
+              </div>
+              <h2 class="shindan__question">家電や家具の破損で気になる箇所はありますか？<span class="shindan__multi-label">（複数選択可）</span></h2>
+              <div class="shindan__options shindan__options--checkbox">
+                <label class="shindan__option-check">
+                  <input type="checkbox" name="q9" value="テレビ・家電を落として壊した">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">テレビ・家電を落として壊した</span>
+                </label>
+                <label class="shindan__option-check">
+                  <input type="checkbox" name="q9" value="子どもが家具を壊してしまった">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">子どもが家具を壊してしまった</span>
+                </label>
+                <label class="shindan__option-check">
+                  <input type="checkbox" name="q9" value="窓ガラスを割ってしまった（事故）">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">窓ガラスを割ってしまった（事故）</span>
+                </label>
+                <label class="shindan__option-check">
+                  <input type="checkbox" name="q9" value="家具の移動中にぶつけて破損した">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">家具の移動中にぶつけて破損した</span>
+                </label>
+                <label class="shindan__option-check shindan__option-check--none">
+                  <input type="checkbox" name="q9" value="特にない" data-none="true">
+                  <span class="shindan__check-box"></span>
+                  <span class="shindan__check-text">特にない</span>
+                </label>
+              </div>
+              <button class="btn-next btn-next--submit" data-q="9">
+                <span>診断結果を見る</span>
+              </button>
+            </div>
+
+          </div>
+
+          <!-- 戻るリンク -->
+          <div class="shindan__back">
+            <button class="shindan__back-btn" id="js-back">◀ 前の質問に戻る</button>
+          </div>
+
+        </div>
+      </div>
+
+      <p class="service__start-label">質問に答えて</p>
+      <p class="service__start-title">Web診断スタート</p>
+
+    </div>
+  </section>
+
+  <!-- ========== 診断結果モーダル ========== -->
+  <div class="result-overlay" id="js-result-overlay">
+    <div class="result-bg">
+      <div class="result-bg__grid">
+        <div class="result-bg__tile"><img src="images/4.jpg" alt="" loading="lazy"></div>
+        <div class="result-bg__tile"><img src="images/5.jpg" alt="" loading="lazy"></div>
+        <div class="result-bg__tile"><img src="images/6.jpg" alt="" loading="lazy"></div>
+        <div class="result-bg__tile"><img src="images/7.jpg" alt="" loading="lazy"></div>
+        <div class="result-bg__tile"><img src="images/8.jpg" alt="" loading="lazy"></div>
+        <div class="result-bg__tile"><img src="images/9.jpg" alt="" loading="lazy"></div>
+        <div class="result-bg__tile"><img src="images/10.jpg" alt="" loading="lazy"></div>
+        <div class="result-bg__tile"><img src="images/11.png" alt="" loading="lazy"></div>
+        <div class="result-bg__tile"><img src="images/12.jpg" alt="" loading="lazy"></div>
+        <div class="result-bg__tile"><img src="images/13.jpg" alt="" loading="lazy"></div>
+        <div class="result-bg__tile"><img src="images/14.jpg" alt="" loading="lazy"></div>
+        <div class="result-bg__tile"><img src="images/15.jpg" alt="" loading="lazy"></div>
+      </div>
+    </div>
+    <div class="result-modal" id="js-result-modal">
+      <div class="result-modal__icon">
+        <img src="images/2.png" alt="LINE" width="56" height="56" style="border-radius: 12px;">
+      </div>
+      <h2 class="result-modal__title">診断結果が出ました！</h2>
+      <p class="result-modal__desc">
+        あなたのお家の火災保険の<br>
+        受給診断が完了しました
+      </p>
+      <div class="result-modal__line-cta">
+        <div class="result-modal__line-icon">
+          <img src="images/2.png" alt="LINE" width="36" height="36" style="border-radius: 8px;">
+        </div>
+        <p class="result-modal__line-text">LINE登録して、<br>診断結果を受け取ってください</p>
+      </div>
+      <a href="#" class="btn-cta btn-cta--line" id="js-line-btn">
+        <span>今すぐ診断結果を見る</span>
+        <span class="btn-cta__arrow">›</span>
+      </a>
+      <p class="result-modal__note">
+        個人情報不要で、診断結果をすぐにご確認いただけます。
+      </p>
+    </div>
+  </div>
+
+  <!-- ========== 診断対象外モーダル ========== -->
+  <div class="ineligible-overlay" id="js-ineligible-overlay">
+    <div class="ineligible-modal">
+      <div class="ineligible-modal__icon">🏠</div>
+      <h2 class="ineligible-modal__title">診断対象外です</h2>
+      <p class="ineligible-modal__desc">
+        申し訳ございませんが、<br>
+        お客様は今回の診断の<br>
+        対象外となっております。
+      </p>
+      <p class="ineligible-modal__sub">
+        本診断は<strong>火災保険にご加入中</strong>の<br>
+        <strong>持ち家（一軒家）</strong>をお持ちの方が対象です。
+      </p>
+      <button class="btn-cta btn-cta--ineligible" id="js-ineligible-close">
+        <span>トップに戻る</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ========== FAQ ========== -->
+  <section class="faq">
+    <div class="faq__inner">
+      <div class="faq__item">
+        <button class="faq__question" aria-expanded="false">
+          <span class="faq__q-icon">Q</span>
+          <span class="faq__q-text">火災保険診断で何がわかるの？</span>
+          <span class="faq__toggle">+</span>
+        </button>
+        <div class="faq__answer">
+          <p>お家の状態から、火災保険で給付金がもらえる可能性があるかを簡易的に診断します。自然災害や事故による被害が火災保険の補償対象になるかの目安がわかります。</p>
+        </div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__question" aria-expanded="false">
+          <span class="faq__q-icon">Q</span>
+          <span class="faq__q-text">本当に無料ですか？</span>
+          <span class="faq__toggle">+</span>
+        </button>
+        <div class="faq__answer">
+          <p>はい、診断は完全無料です。費用は一切かかりません。お気軽にお試しください。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== フッター ========== -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <nav class="footer__nav">
+        <a href="#" class="footer__link">トップページ</a>
+        <a href="#" class="footer__link">利用規約</a>
+        <a href="#" class="footer__link">プライバシーポリシー</a>
+        <a href="#" class="footer__link">運営者情報</a>
+      </nav>
+      <p class="footer__copy">Copyright &copy; おうちの火災保険　受給診断 - All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ========== フローティングCTA ========== -->
+  <div class="floating-cta" id="js-floating-cta">
+    <button class="btn-cta btn-cta--floating" id="js-start-floating">
+      <span id="js-floating-text">診断スタート</span>
+      <span class="btn-cta__arrow">›</span>
+    </button>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
