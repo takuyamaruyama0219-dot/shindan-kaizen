@@ -135,6 +135,12 @@
       <div class="shindan" id="js-shindan">
         <div class="shindan__inner">
 
+          <!-- 診断モード用ミニヘッダー -->
+          <div class="shindan__header">
+            <span class="shindan__header-icon">🏠</span>
+            <span class="shindan__header-title">おうちの火災保険 受給診断</span>
+          </div>
+
           <!-- プログレス -->
           <div class="shindan__progress">
             <p class="shindan__step-text">
@@ -476,7 +482,7 @@
                 </label>
               </div>
               <button class="btn-next btn-next--submit" data-q="9">
-                <span>診断結果を見る</span>
+                <span>次へ</span>
               </button>
             </div>
 
@@ -498,22 +504,6 @@
 
   <!-- ========== 診断結果モーダル ========== -->
   <div class="result-overlay" id="js-result-overlay">
-    <div class="result-bg">
-      <div class="result-bg__grid">
-        <div class="result-bg__tile"><img src="images/4.jpg" alt="" loading="lazy"></div>
-        <div class="result-bg__tile"><img src="images/5.jpg" alt="" loading="lazy"></div>
-        <div class="result-bg__tile"><img src="images/6.jpg" alt="" loading="lazy"></div>
-        <div class="result-bg__tile"><img src="images/7.jpg" alt="" loading="lazy"></div>
-        <div class="result-bg__tile"><img src="images/8.jpg" alt="" loading="lazy"></div>
-        <div class="result-bg__tile"><img src="images/9.jpg" alt="" loading="lazy"></div>
-        <div class="result-bg__tile"><img src="images/10.jpg" alt="" loading="lazy"></div>
-        <div class="result-bg__tile"><img src="images/11.png" alt="" loading="lazy"></div>
-        <div class="result-bg__tile"><img src="images/12.jpg" alt="" loading="lazy"></div>
-        <div class="result-bg__tile"><img src="images/13.jpg" alt="" loading="lazy"></div>
-        <div class="result-bg__tile"><img src="images/14.jpg" alt="" loading="lazy"></div>
-        <div class="result-bg__tile"><img src="images/15.jpg" alt="" loading="lazy"></div>
-      </div>
-    </div>
     <div class="result-modal" id="js-result-modal">
       <div class="result-modal__icon">
         <img src="images/2.png" alt="LINE" width="56" height="56" style="border-radius: 12px;">
@@ -589,10 +579,9 @@
   <footer class="footer">
     <div class="footer__inner">
       <nav class="footer__nav">
-        <a href="#" class="footer__link">トップページ</a>
-        <a href="#" class="footer__link">利用規約</a>
-        <a href="#" class="footer__link">プライバシーポリシー</a>
-        <a href="#" class="footer__link">運営者情報</a>
+        <a href="https://www.ieno-mikata.com/terms/" class="footer__link" target="_blank" rel="noopener noreferrer">利用規約</a>
+        <a href="https://www.ieno-mikata.com/privacy/" class="footer__link" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>
+        <a href="https://www.ieno-mikata.com/company/" class="footer__link" target="_blank" rel="noopener noreferrer">運営者情報</a>
       </nav>
       <p class="footer__copy">Copyright &copy; おうちの火災保険　受給診断 - All Rights Reserved.</p>
     </div>

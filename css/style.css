@@ -847,60 +847,12 @@ button {
   justify-content: center;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  background: #FAFAF6;
 }
 
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
-}
-
-.result-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.result-bg__grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  gap: 4px;
-  width: 100%;
-  height: 100%;
-  filter: blur(2px) brightness(0.7);
-}
-
-.result-bg__tile {
-  background: linear-gradient(135deg, #FFE0C2, #FFECD6);
-  position: relative;
-  overflow: hidden;
-}
-
-.result-bg__tile img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.result-bg__tile:nth-child(odd) {
-  background: linear-gradient(135deg, #FFD4A8, #FFE8CC);
-}
-
-.result-bg__tile:nth-child(3n) {
-  background: linear-gradient(135deg, #FFCCA0, #FFE0C2);
-}
-
-.result-bg::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.4);
 }
 
 .result-modal {
@@ -1318,6 +1270,59 @@ button {
   .btn-cta--floating {
     max-width: 400px;
   }
+}
+
+/* ---------- 診断モード用ミニヘッダー ---------- */
+.shindan__header {
+  display: none;
+}
+
+.shindan__header-icon {
+  font-size: 1.25rem;
+}
+
+.shindan__header-title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #E8721C;
+}
+
+/* ---------- 診断モード ---------- */
+body.is-diagnostic-mode .header,
+body.is-diagnostic-mode .hero,
+body.is-diagnostic-mode .trust,
+body.is-diagnostic-mode .service__character,
+body.is-diagnostic-mode .service__lead,
+body.is-diagnostic-mode .service__main,
+body.is-diagnostic-mode .service__sub,
+body.is-diagnostic-mode .service__start-label,
+body.is-diagnostic-mode .service__start-title,
+body.is-diagnostic-mode .faq,
+body.is-diagnostic-mode .footer,
+body.is-diagnostic-mode .floating-cta {
+  display: none !important;
+}
+
+body.is-diagnostic-mode .service {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+body.is-diagnostic-mode .shindan {
+  margin: 0;
+  min-height: 100vh;
+  padding-top: 0;
+}
+
+body.is-diagnostic-mode .shindan__header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 16px;
+  background: #fff;
+  border-bottom: 1px solid #f0ebe3;
+  margin: 0 -16px 0;
 }
 
 /* ---------- アニメーション: スクロール表示 ---------- */

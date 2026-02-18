@@ -29,6 +29,95 @@
   var totalSteps = 9;
   var answers = {};
   var isTransitioning = false;
+  var isPopstateHandling = false;
+
+  // ---------- 診断モード切替 ----------
+  function enterDiagnosticMode() {
+    document.body.classList.add('is-diagnostic-mode');
+    window.scrollTo(0, 0);
+  }
+
+  function exitDiagnosticMode() {
+    document.body.classList.remove('is-diagnostic-mode');
+    clearHash();
+  }
+
+  // ---------- ハッシュルーティング ----------
+  function updateHash(step) {
+    if (step === '0a') {
+      history.pushState({ step: '0a' }, '', '#step0a');
+    } else if (step >= 2) {
+      history.pushState({ step: step }, '', '#step' + step);
+    } else {
+      clearHash();
+    }
+  }
+
+  function clearHash() {
+    if (location.hash) {
+      history.pushState({ step: 1 }, '', location.pathname + location.search);
+    }
+  }
+
+  // ページ読込時: 回答データがないハッシュは除去してQ1表示
+  (function handleInitialHash() {
+    var hash = location.hash;
+    if (/^#step([2-9]|0a)$/.test(hash)) {
+      history.replaceState({ step: 1 }, '', location.pathname + location.search);
+    }
+  })();
+
+  // ブラウザ戻る/進むボタン対応
+  window.addEventListener('popstate', function (e) {
+    var state = e.state;
+    var targetStep = (state && state.step) ? state.step : 1;
+
+    // ハッシュからもステップを判定（フォールバック）
+    if (!state) {
+      var hash = location.hash;
+      if (hash === '#step0a') {
+        targetStep = '0a';
+      } else {
+        var match = hash.match(/^#step(\d+)$/);
+        if (match) {
+          targetStep = parseInt(match[1], 10);
+        } else {
+          targetStep = 1;
+        }
+      }
+    }
+
+    isPopstateHandling = true;
+
+    if (targetStep === '0a') {
+      // 結果ページに戻る場合 → 回答データがなければQ1へ
+      if (Object.keys(answers).length > 0) {
+        showResult();
+      } else {
+        currentStep = 1;
+        showCard(currentStep);
+        exitDiagnosticMode();
+      }
+    } else if (targetStep <= 1) {
+      // 結果モーダルが開いていれば閉じる
+      resultOverlay.classList.remove('is-active');
+      document.body.style.overflow = '';
+      currentStep = 1;
+      showCard(currentStep);
+      exitDiagnosticMode();
+    } else {
+      // 結果モーダルが開いていれば閉じる
+      resultOverlay.classList.remove('is-active');
+      document.body.style.overflow = '';
+      currentStep = targetStep;
+      showCard(currentStep);
+      if (!document.body.classList.contains('is-diagnostic-mode')) {
+        enterDiagnosticMode();
+      }
+    }
+
+    isPopstateHandling = false;
+  });
 
   // ---------- 診断セクションへスクロール ----------
   function scrollToShindan() {
@@ -68,7 +157,11 @@
     }
     updateProgress();
     updateBackButton();
-    shindanSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (document.body.classList.contains('is-diagnostic-mode')) {
+      window.scrollTo(0, 0);
+    } else {
+      shindanSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 
   // ---------- 戻るボタン表示制御 ----------
@@ -95,6 +188,12 @@
     if (currentStep < totalSteps) {
       currentStep++;
       showCard(currentStep);
+      if (!isPopstateHandling) {
+        updateHash(currentStep);
+      }
+      if (currentStep >= 2) {
+        enterDiagnosticMode();
+      }
     } else {
       showResult();
     }
@@ -104,6 +203,12 @@
     if (currentStep > 1) {
       currentStep--;
       showCard(currentStep);
+      if (!isPopstateHandling) {
+        updateHash(currentStep);
+      }
+      if (currentStep <= 1) {
+        exitDiagnosticMode();
+      }
     }
   }
 
@@ -121,6 +226,8 @@
   function hideIneligible() {
     ineligibleOverlay.classList.remove('is-active');
     document.body.style.overflow = '';
+    // 診断モード解除 + ハッシュクリア
+    exitDiagnosticMode();
     // Q1に戻す
     currentStep = 1;
     showCard(currentStep);
@@ -272,6 +379,11 @@
     // LINEボタンのリンク先を設定
     var lineBtn = document.getElementById('js-line-btn');
     lineBtn.href = lineUrls[level];
+
+    // 最終ページをstep0aとしてハッシュに記録
+    if (!isPopstateHandling) {
+      updateHash('0a');
+    }
 
     resultOverlay.classList.add('is-active');
     document.body.style.overflow = 'hidden';
