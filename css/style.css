@@ -1,5 +1,5 @@
 /* ============================================
-   火災保険適用診断サイト - スタイルシート
+   持ち家の給付金診断サイト - スタイルシート
    参考: おうちキャンバス ハウスメーカー診断
    カラー: オレンジ系
    ============================================ */
@@ -188,36 +188,110 @@ button {
 }
 
 /* スマホモックアップ */
+.hero__phone-wrap {
+  position: relative;
+  width: 240px;
+  margin: 16px auto 0;
+  padding-bottom: 28px;
+}
+
 .hero__phone {
   width: 180px;
   height: 280px;
-  margin: 16px auto;
-  background: #fff;
-  border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-  padding: 12px;
+  margin: 0 auto;
+  background: #1a1a2e;
+  border-radius: 28px;
+  box-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  padding: 8px;
   position: relative;
 }
 
+/* ノッチ */
 .hero__phone::before {
   content: '';
   position: absolute;
-  top: 6px;
+  top: 8px;
   left: 50%;
   transform: translateX(-50%);
-  width: 40px;
-  height: 4px;
-  background: #e0e0e0;
-  border-radius: 2px;
+  width: 48px;
+  height: 14px;
+  background: #1a1a2e;
+  border-radius: 0 0 10px 10px;
+  z-index: 2;
+}
+
+/* ノッチ内カメラ */
+.hero__phone::after {
+  content: '';
+  position: absolute;
+  top: 11px;
+  left: 50%;
+  transform: translateX(-50%) translateX(14px);
+  width: 6px;
+  height: 6px;
+  background: #2a2a4a;
+  border-radius: 50%;
+  z-index: 3;
+  box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+/* 携帯に重なる診断スタートCTA */
+.hero__phone-cta {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 240px;
+  padding: 16px 24px;
+  background: #FFF5ED;
+  color: #E8721C;
+  font-size: 1.0625rem;
+  font-weight: 900;
+  border: none;
+  border-radius: 50px;
+  box-shadow:
+    0 4px 0 #d4d0c8,
+    0 8px 24px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  letter-spacing: 0.05em;
+  font-family: inherit;
+}
+
+.hero__phone-cta:hover {
+  transform: translateX(-50%) translateY(-2px);
+  box-shadow:
+    0 6px 0 #d4d0c8,
+    0 10px 28px rgba(0, 0, 0, 0.25);
+}
+
+.hero__phone-cta:active {
+  transform: translateX(-50%) translateY(2px);
+  box-shadow:
+    0 1px 0 #d4d0c8,
+    0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.hero__phone-cta-arrow {
+  font-size: 1.375rem;
+  font-weight: 300;
+  line-height: 1;
 }
 
 .hero__phone-screen {
   width: 100%;
   height: 100%;
-  background: #FFF9F5;
-  border-radius: 12px;
+  background: #FAFAF6;
+  border-radius: 20px;
   overflow: hidden;
-  padding: 16px 8px 8px;
+  padding: 18px 6px 6px;
 }
 
 .hero__phone-content {
@@ -230,107 +304,97 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 3px;
   background: #E8721C;
-  margin: -16px -8px 0;
-  padding: 8px 0;
-  border-radius: 12px 12px 0 0;
+  margin: -18px -6px 0;
+  padding: 20px 0 6px;
+  border-radius: 20px 20px 0 0;
 }
 
 .hero__phone-header-icon {
-  font-size: 0.7rem;
+  font-size: 0.55rem;
 }
 
 .hero__phone-header-text {
-  font-size: 0.65rem;
+  font-size: 0.5rem;
   font-weight: 700;
   color: #fff;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.02em;
 }
 
-.hero__phone-checklist {
+/* スマホモック Q1プレビュー */
+.hero__phone-q1 {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 10px 6px;
   flex: 1;
+  padding: 6px 6px 4px;
 }
 
-.hero__phone-check-item {
+.hero__phone-progress {
+  margin-bottom: 4px;
+}
+
+.hero__phone-progress-text {
+  font-size: 0.4rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.hero__phone-progress-time {
+  font-size: 0.35rem;
+  color: #999;
+  float: right;
+}
+
+.hero__phone-dots {
   display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 5px 8px;
-  border-radius: 6px;
-  background: #fff;
-  border: 1px solid #eee;
-  transition: all 0.3s;
-}
-
-.hero__phone-check-item--done {
-  border-color: #E8721C;
-  background: #FFF5EE;
-}
-
-.hero__phone-check-item--done .hero__phone-check-icon {
-  color: #fff;
-  background: #E8721C;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
+  gap: 3px;
   justify-content: center;
-  font-size: 0.45rem;
+  margin-top: 3px;
+}
+
+.hero__phone-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #D9D9D9;
+}
+
+.hero__phone-dot--current {
+  background: #9E8E7E;
+}
+
+.hero__phone-question {
+  font-size: 0.5rem;
   font-weight: 700;
-  flex-shrink: 0;
-}
-
-.hero__phone-check-item--active {
-  border-color: #E8721C;
-  background: #fff;
-  box-shadow: 0 0 0 2px rgba(232, 114, 28, 0.2);
-}
-
-.hero__phone-check-item--active .hero__phone-check-icon {
   color: #E8721C;
-  font-size: 0.4rem;
-  width: 14px;
   text-align: center;
-  flex-shrink: 0;
-  animation: pulse 1.5s ease-in-out infinite;
+  line-height: 1.4;
+  margin: 6px 0;
 }
 
-.hero__phone-check-item .hero__phone-check-icon {
-  color: #ccc;
-  font-size: 0.4rem;
-  width: 14px;
-  text-align: center;
-  flex-shrink: 0;
+.hero__phone-options {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
-.hero__phone-check-text {
-  font-size: 0.55rem;
+.hero__phone-option {
+  padding: 4px 6px;
+  border: 1px solid #C9B99A;
+  border-radius: 20px;
+  font-size: 0.4rem;
   font-weight: 500;
   color: #412807;
-}
-
-.hero__phone-check-item--done .hero__phone-check-text {
-  color: #E8721C;
-  font-weight: 600;
-}
-
-.hero__phone-btn {
-  background: linear-gradient(135deg, #E8721C, #D4600F);
-  color: #fff;
-  font-size: 0.55rem;
-  font-weight: 700;
   text-align: center;
-  padding: 7px 0;
-  border-radius: 20px;
-  margin: 0 4px 2px;
-  letter-spacing: 0.05em;
-  box-shadow: 0 2px 8px rgba(232, 114, 28, 0.3);
+  background: #fff;
+}
+
+.hero__phone-option--selected {
+  border-color: #E8721C;
+  background: #FFF5ED;
+  color: #E8721C;
+  font-weight: 700;
 }
 
 @keyframes pulse {
@@ -426,7 +490,7 @@ button {
 }
 
 .btn-cta--trust {
-  margin-bottom: 24px;
+  margin-top: 24px;
 }
 
 .trust__scroll-hint {
@@ -1208,9 +1272,73 @@ button {
     font-size: 3.5rem;
   }
 
+  .hero__phone-wrap {
+    width: 250px;
+    padding-bottom: 28px;
+  }
+
   .hero__phone {
     width: 220px;
-    height: 340px;
+    height: 360px;
+    border-radius: 34px;
+    padding: 10px;
+  }
+
+  .hero__phone::before {
+    width: 56px;
+    height: 16px;
+    top: 10px;
+  }
+
+  .hero__phone::after {
+    top: 13px;
+    transform: translateX(-50%) translateX(16px);
+    width: 7px;
+    height: 7px;
+  }
+
+  .hero__phone-screen {
+    border-radius: 24px;
+    padding: 20px 8px 8px;
+  }
+
+  .hero__phone-header {
+    margin: -20px -8px 0;
+    padding: 22px 0 8px;
+    border-radius: 24px 24px 0 0;
+  }
+
+  .hero__phone-header-text {
+    font-size: 0.55rem;
+  }
+
+  .hero__phone-cta {
+    width: 280px;
+    padding: 18px 28px;
+    font-size: 1.125rem;
+  }
+
+  .hero__phone-question {
+    font-size: 0.6rem;
+    margin: 8px 0;
+  }
+
+  .hero__phone-option {
+    padding: 5px 8px;
+    font-size: 0.5rem;
+  }
+
+  .hero__phone-dots {
+    gap: 4px;
+  }
+
+  .hero__phone-dot {
+    width: 7px;
+    height: 7px;
+  }
+
+  .hero__phone-progress-text {
+    font-size: 0.45rem;
   }
 
   .hero__badge {

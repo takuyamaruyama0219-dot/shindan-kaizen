@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>おうちの火災保険　受給診断 | 無料で適用可能性がわかる</title>
-  <meta name="description" content="たった60秒の簡単診断で、火災保険の適用可能性がわかります。9つの質問に答えるだけ。完全無料。">
+  <title>持ち家の給付金診断 | 無料で受給可能性がわかる</title>
+  <meta name="description" content="たった60秒の簡単診断で、持ち家の給付金の受給可能性がわかります。9つの質問に答えるだけ。完全無料。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -28,7 +28,7 @@
     <div class="header__inner">
       <div class="header__logo">
         <span class="header__logo-icon">🏠</span>
-        <span class="header__logo-text">おうちの火災保険　受給診断</span>
+        <span class="header__logo-text">持ち家の給付金診断</span>
       </div>
     </div>
   </header>
@@ -36,47 +36,54 @@
   <!-- ========== ファーストビュー ========== -->
   <section class="hero">
     <div class="hero__inner">
-      <p class="hero__sub">火災保険、使えるかも？</p>
+      <p class="hero__sub">給付金、もらえるかも？</p>
       <h1 class="hero__title">
-        おうちの<br>
-        <span class="hero__title-large">火災保険</span><br>
-        <span class="hero__title-accent">受給診断</span>
+        持ち家の<br>
+        <span class="hero__title-large">給付金</span><br>
+        <span class="hero__title-accent">診断</span>
       </h1>
       <div class="hero__badge">
         <span class="hero__badge-text">たった<strong>60秒</strong>で<br>わかる！</span>
       </div>
-      <div class="hero__phone">
-        <div class="hero__phone-screen">
-          <div class="hero__phone-content">
-            <div class="hero__phone-header">
-              <span class="hero__phone-header-icon">🏠</span>
-              <span class="hero__phone-header-text">受給診断</span>
+      <div class="hero__phone-wrap">
+        <div class="hero__phone">
+          <div class="hero__phone-screen">
+            <div class="hero__phone-content">
+              <div class="hero__phone-header">
+                <span class="hero__phone-header-icon">🏠</span>
+                <span class="hero__phone-header-text">持ち家の給付金診断</span>
+              </div>
+              <div class="hero__phone-q1">
+                <div class="hero__phone-progress">
+                  <span class="hero__phone-progress-text">1問目 / 9問中</span>
+                  <span class="hero__phone-progress-time">(所要時間：約60秒)</span>
+                  <div class="hero__phone-dots">
+                    <span class="hero__phone-dot hero__phone-dot--current"></span>
+                    <span class="hero__phone-dot"></span>
+                    <span class="hero__phone-dot"></span>
+                    <span class="hero__phone-dot"></span>
+                    <span class="hero__phone-dot"></span>
+                    <span class="hero__phone-dot"></span>
+                    <span class="hero__phone-dot"></span>
+                    <span class="hero__phone-dot"></span>
+                    <span class="hero__phone-dot"></span>
+                  </div>
+                </div>
+                <p class="hero__phone-question">今のお住まいは<br>どちらですか？</p>
+                <div class="hero__phone-options">
+                  <div class="hero__phone-option hero__phone-option--selected">持ち家（一軒家）</div>
+                  <div class="hero__phone-option">持ち家（マンション）</div>
+                  <div class="hero__phone-option">賃貸</div>
+                  <div class="hero__phone-option">その他（物件オーナー）</div>
+                </div>
+              </div>
             </div>
-            <div class="hero__phone-checklist">
-              <div class="hero__phone-check-item hero__phone-check-item--done">
-                <span class="hero__phone-check-icon">✓</span>
-                <span class="hero__phone-check-text">築年数</span>
-              </div>
-              <div class="hero__phone-check-item hero__phone-check-item--done">
-                <span class="hero__phone-check-icon">✓</span>
-                <span class="hero__phone-check-text">建物の種類</span>
-              </div>
-              <div class="hero__phone-check-item hero__phone-check-item--done">
-                <span class="hero__phone-check-icon">✓</span>
-                <span class="hero__phone-check-text">被害状況</span>
-              </div>
-              <div class="hero__phone-check-item hero__phone-check-item--active">
-                <span class="hero__phone-check-icon">●</span>
-                <span class="hero__phone-check-text">保険の種類</span>
-              </div>
-              <div class="hero__phone-check-item">
-                <span class="hero__phone-check-icon">○</span>
-                <span class="hero__phone-check-text">お住まいの地域</span>
-              </div>
-            </div>
-            <div class="hero__phone-btn">診断結果を見る</div>
           </div>
         </div>
+        <button class="hero__phone-cta" id="js-start-top">
+          <span>診断スタート</span>
+          <span class="hero__phone-cta-arrow">›</span>
+        </button>
       </div>
     </div>
   </section>
@@ -84,14 +91,10 @@
   <!-- ========== 信頼性訴求セクション ========== -->
   <section class="trust">
     <div class="trust__inner">
-      <button class="btn-cta btn-cta--trust" id="js-start-trust">
-        <span>診断スタート</span>
-        <span class="btn-cta__arrow">›</span>
-      </button>
       <p class="trust__lead"><span class="trust__lead-accent">かんたんな質問</span>に答えるだけ</p>
       <p class="trust__desc">
         お家の状態から<br>
-        火災保険の適用可能性が<br>
+        給付金の受給可能性が<br>
         <span class="trust__desc-accent">無料</span>でわかっちゃう♪
       </p>
       <p class="trust__note">※持ち家（一軒家）の方が対象です<br>※診断結果を知るにはLINE登録が必要です</p>
@@ -108,6 +111,11 @@
           <p class="trust__stat-sub">※過去実績より</p>
         </div>
       </div>
+
+      <button class="btn-cta btn-cta--trust" id="js-start-trust">
+        <span>診断スタート</span>
+        <span class="btn-cta__arrow">›</span>
+      </button>
 
       <div class="trust__scroll-hint">
         <span class="trust__scroll-icon">⌄</span>
@@ -138,7 +146,7 @@
           <!-- 診断モード用ミニヘッダー -->
           <div class="shindan__header">
             <span class="shindan__header-icon">🏠</span>
-            <span class="shindan__header-title">おうちの火災保険 受給診断</span>
+            <span class="shindan__header-title">持ち家の給付金診断</span>
           </div>
 
           <!-- プログレス -->
@@ -510,7 +518,7 @@
       </div>
       <h2 class="result-modal__title">診断結果が出ました！</h2>
       <p class="result-modal__desc">
-        あなたのお家の火災保険の<br>
+        あなたのお家の給付金の<br>
         受給診断が完了しました
       </p>
       <div class="result-modal__line-cta">
@@ -555,11 +563,11 @@
       <div class="faq__item">
         <button class="faq__question" aria-expanded="false">
           <span class="faq__q-icon">Q</span>
-          <span class="faq__q-text">火災保険診断で何がわかるの？</span>
+          <span class="faq__q-text">持ち家の給付金診断で何がわかるの？</span>
           <span class="faq__toggle">+</span>
         </button>
         <div class="faq__answer">
-          <p>お家の状態から、火災保険で給付金がもらえる可能性があるかを簡易的に診断します。自然災害や事故による被害が火災保険の補償対象になるかの目安がわかります。</p>
+          <p>お家の状態から、給付金がもらえる可能性があるかを簡易的に診断します。自然災害や事故による被害が補償対象になるかの目安がわかります。</p>
         </div>
       </div>
       <div class="faq__item">
@@ -583,7 +591,7 @@
         <a href="https://www.ieno-mikata.com/privacy/" class="footer__link" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>
         <a href="https://www.ieno-mikata.com/company/" class="footer__link" target="_blank" rel="noopener noreferrer">運営者情報</a>
       </nav>
-      <p class="footer__copy">Copyright &copy; おうちの火災保険　受給診断 - All Rights Reserved.</p>
+      <p class="footer__copy">Copyright &copy; 持ち家の給付金診断 - All Rights Reserved.</p>
     </div>
   </footer>
 
