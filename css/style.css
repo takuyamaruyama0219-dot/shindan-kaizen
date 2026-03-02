@@ -403,6 +403,205 @@ button {
 }
 
 
+/* ---------- 実績スライダーセクション ---------- */
+.cases {
+  background: #FFF5ED;
+  padding: 32px 0 28px;
+  overflow: hidden;
+}
+
+.cases__inner {
+  max-width: 480px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.cases__lead {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: #E8721C;
+  margin-bottom: 4px;
+}
+
+.cases__title {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #412807;
+  margin-bottom: 20px;
+  border-bottom: 3px dashed #E8721C;
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+.cases__slider-wrap {
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.cases__slider {
+  overflow: hidden;
+  cursor: grab;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.cases__slider:active {
+  cursor: grabbing;
+}
+
+.cases__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(calc(-50% - 14px));
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  background: #E8721C;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  font-size: 0;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cases__arrow::before {
+  content: '';
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-top: 3px solid #fff;
+  border-right: 3px solid #fff;
+}
+
+.cases__arrow--prev::before {
+  transform: rotate(-135deg);
+  margin-left: 3px;
+}
+
+.cases__arrow--next::before {
+  transform: rotate(45deg);
+  margin-right: 3px;
+}
+
+.cases__arrow:hover {
+  background: #D4600F;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  transform: translateY(calc(-50% - 14px)) scale(1.1);
+}
+
+.cases__arrow--prev {
+  left: 6px;
+}
+
+.cases__arrow--next {
+  right: 6px;
+}
+
+.cases__track {
+  display: flex;
+  gap: 12px;
+  transition: transform 0.35s ease;
+  padding: 0 16px;
+}
+
+.cases__track.is-dragging {
+  transition: none;
+}
+
+.cases__slide {
+  flex: 0 0 72%;
+  min-width: 0;
+  border-radius: 16px;
+  overflow: visible;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  background: #fff;
+  position: relative;
+  margin-bottom: 28px;
+}
+
+.cases__photo {
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.cases__photo img {
+  width: 100%;
+  display: block;
+}
+
+.cases__photo--stacked {
+  border-radius: 16px;
+}
+
+.cases__photo--stacked img + img {
+  border-top: 2px solid #f0ebe3;
+}
+
+.cases__amount {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #fff;
+  border: 2px solid #E8721C;
+  border-radius: 8px;
+  padding: 6px 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  white-space: nowrap;
+  z-index: 2;
+  max-width: 95%;
+}
+
+.cases__amount-label {
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: #fff;
+  background: #E8721C;
+  padding: 2px 6px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.cases__amount-number {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #E8721C;
+  letter-spacing: 0.01em;
+}
+
+.cases__amount-number small {
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.cases__dots {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.cases__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #D9D9D9;
+  transition: background 0.3s ease;
+  cursor: pointer;
+}
+
+.cases__dot--active {
+  background: #E8721C;
+}
+
 /* ---------- 信頼性訴求セクション ---------- */
 .trust {
   background: #FFF5ED;
@@ -1252,12 +1451,35 @@ button {
 @media (min-width: 769px) {
   .header__inner,
   .hero__inner,
+  .cases__inner,
   .trust__inner,
   .service__inner,
   .shindan__inner,
   .faq__inner,
   .footer__inner {
     max-width: 640px;
+  }
+
+  .cases__slide {
+    flex: 0 0 55%;
+  }
+
+  .cases__amount {
+    gap: 10px;
+    padding: 8px 16px;
+  }
+
+  .cases__amount-label {
+    font-size: 0.6875rem;
+    padding: 3px 10px;
+  }
+
+  .cases__amount-number {
+    font-size: 1.5rem;
+  }
+
+  .cases__amount-number small {
+    font-size: 1rem;
   }
 
   .hero {
@@ -1418,6 +1640,7 @@ button {
 /* ---------- 診断モード ---------- */
 body.is-diagnostic-mode .header,
 body.is-diagnostic-mode .hero,
+body.is-diagnostic-mode .cases,
 body.is-diagnostic-mode .trust,
 body.is-diagnostic-mode .service__character,
 body.is-diagnostic-mode .service__lead,

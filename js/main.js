@@ -453,6 +453,173 @@
 
   handleScrollAnimation();
 
+  // ---------- 実績スライダー（無限ループ） ----------
+  (function initCasesSlider() {
+    var track = document.getElementById('js-cases-track');
+    var slider = document.getElementById('js-cases-slider');
+    var dotsWrap = document.getElementById('js-cases-dots');
+    if (!track || !slider || !dotsWrap) return;
+
+    var prevBtn = document.getElementById('js-cases-prev');
+    var nextBtn2 = document.getElementById('js-cases-next');
+    var dots = dotsWrap.querySelectorAll('.cases__dot');
+    var autoTimer = null;
+    var isAnimating = false;
+
+    // 元スライドを複製して前後に追加（無限ループ用）
+    var origSlides = track.querySelectorAll('.cases__slide');
+    var slideCount = origSlides.length;
+    // 末尾にクローン追加
+    origSlides.forEach(function (s) {
+      track.appendChild(s.cloneNode(true));
+    });
+    // 先頭にクローン追加（逆順で挿入して正しい並びに）
+    for (var ci = slideCount - 1; ci >= 0; ci--) {
+      track.insertBefore(origSlides[ci].cloneNode(true), track.firstChild);
+    }
+
+    var allSlides = track.querySelectorAll('.cases__slide');
+    // 実際のインデックスは slideCount（クローン分オフセット）から開始
+    var currentIndex = slideCount;
+
+    function getSlideOffset(index) {
+      var slide = allSlides[index];
+      if (!slide) return 0;
+      return slide.offsetLeft - 16;
+    }
+
+    function updateDots() {
+      var realIndex = ((currentIndex - slideCount) % slideCount + slideCount) % slideCount;
+      dots.forEach(function (d, i) {
+        d.classList.toggle('cases__dot--active', i === realIndex);
+      });
+    }
+
+    function jumpTo(index) {
+      track.style.transition = 'none';
+      currentIndex = index;
+      track.style.transform = 'translateX(-' + getSlideOffset(currentIndex) + 'px)';
+      // 強制リフロー
+      track.offsetHeight;
+      track.style.transition = '';
+    }
+
+    function goTo(index) {
+      if (isAnimating) return;
+      isAnimating = true;
+      currentIndex = index;
+      track.style.transform = 'translateX(-' + getSlideOffset(currentIndex) + 'px)';
+      updateDots();
+      // transitionendが発火しない場合の安全策
+      setTimeout(function () { isAnimating = false; }, 400);
+    }
+
+    // トランジション完了時にクローン境界なら瞬間ジャンプ
+    track.addEventListener('transitionend', function (e) {
+      if (e.target !== track) return;
+      isAnimating = false;
+      if (currentIndex >= slideCount * 2) {
+        jumpTo(currentIndex - slideCount);
+      } else if (currentIndex < slideCount) {
+        jumpTo(currentIndex + slideCount);
+      }
+    });
+
+    // 初期位置（トランジションなし）
+    jumpTo(currentIndex);
+
+    // ドットクリック
+    dots.forEach(function (dot) {
+      dot.addEventListener('click', function () {
+        var idx = parseInt(this.getAttribute('data-index'), 10);
+        goTo(slideCount + idx);
+        resetAuto();
+      });
+    });
+
+    // 矢印ボタン
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        goTo(currentIndex - 1);
+        resetAuto();
+      });
+    }
+    if (nextBtn2) {
+      nextBtn2.addEventListener('click', function (e) {
+        e.stopPropagation();
+        goTo(currentIndex + 1);
+        resetAuto();
+      });
+    }
+
+    // タッチ / マウスドラッグ
+    var startX = 0;
+    var currentX = 0;
+    var isDragging = false;
+
+    function onStart(x) {
+      isDragging = true;
+      startX = x;
+      currentX = x;
+      track.classList.add('is-dragging');
+    }
+
+    function onMove(x) {
+      if (!isDragging) return;
+      currentX = x;
+      var diff = currentX - startX;
+      var offset = getSlideOffset(currentIndex);
+      track.style.transform = 'translateX(' + (-offset + diff) + 'px)';
+    }
+
+    function onEnd() {
+      if (!isDragging) return;
+      isDragging = false;
+      track.classList.remove('is-dragging');
+      var diff = currentX - startX;
+      if (diff < -50) {
+        goTo(currentIndex + 1);
+      } else if (diff > 50) {
+        goTo(currentIndex - 1);
+      } else {
+        goTo(currentIndex);
+      }
+      resetAuto();
+    }
+
+    slider.addEventListener('touchstart', function (e) {
+      onStart(e.touches[0].clientX);
+    }, { passive: true });
+    slider.addEventListener('touchmove', function (e) {
+      onMove(e.touches[0].clientX);
+    }, { passive: true });
+    slider.addEventListener('touchend', onEnd);
+
+    slider.addEventListener('mousedown', function (e) {
+      e.preventDefault();
+      onStart(e.clientX);
+    });
+    window.addEventListener('mousemove', function (e) {
+      onMove(e.clientX);
+    });
+    window.addEventListener('mouseup', onEnd);
+
+    // 自動スライド
+    function startAuto() {
+      autoTimer = setInterval(function () {
+        goTo(currentIndex + 1);
+      }, 4000);
+    }
+
+    function resetAuto() {
+      clearInterval(autoTimer);
+      startAuto();
+    }
+
+    startAuto();
+  })();
+
   // ---------- GTMイベント送信（将来用） ----------
   function trackEvent(eventName, data) {
     if (typeof window.dataLayer !== 'undefined') {

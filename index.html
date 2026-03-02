@@ -71,7 +71,7 @@
                 </div>
                 <p class="hero__phone-question">今のお住まいは<br>どちらですか？</p>
                 <div class="hero__phone-options">
-                  <div class="hero__phone-option hero__phone-option--selected">持ち家（一軒家）</div>
+                  <div class="hero__phone-option hero__phone-option--selected">持ち家（戸建て）</div>
                   <div class="hero__phone-option">持ち家（マンション）</div>
                   <div class="hero__phone-option">賃貸</div>
                   <div class="hero__phone-option">その他（物件オーナー）</div>
@@ -88,6 +88,54 @@
     </div>
   </section>
 
+  <!-- ========== 実績スライダーセクション ========== -->
+  <section class="cases">
+    <div class="cases__inner">
+      <p class="cases__lead">持ち家（戸建て）なら</p>
+      <h2 class="cases__title">高額の認定金額が多数</h2>
+      <div class="cases__slider-wrap">
+        <button class="cases__arrow cases__arrow--prev" id="js-cases-prev" aria-label="前へ"></button>
+        <button class="cases__arrow cases__arrow--next" id="js-cases-next" aria-label="次へ"></button>
+        <div class="cases__slider" id="js-cases-slider">
+          <div class="cases__track" id="js-cases-track">
+          <div class="cases__slide">
+            <div class="cases__photo">
+              <img src="images/114.png" alt="保険金お支払いのご案内 3,559,903円" loading="lazy">
+            </div>
+            <div class="cases__amount">
+              <span class="cases__amount-label">給付金額</span>
+              <span class="cases__amount-number">3,559,903<small>円</small></span>
+            </div>
+          </div>
+          <div class="cases__slide">
+            <div class="cases__photo">
+              <img src="images/112.png" alt="お支払い共済金のご案内 1,843,300円" loading="lazy">
+            </div>
+            <div class="cases__amount">
+              <span class="cases__amount-label">給付金額</span>
+              <span class="cases__amount-number">1,843,300<small>円</small></span>
+            </div>
+          </div>
+          <div class="cases__slide">
+            <div class="cases__photo">
+              <img src="images/113.png" alt="保険金お支払いのご案内 1,439,133円" loading="lazy">
+            </div>
+            <div class="cases__amount">
+              <span class="cases__amount-label">給付金額</span>
+              <span class="cases__amount-number">1,439,133<small>円</small></span>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="cases__dots" id="js-cases-dots">
+        <span class="cases__dot cases__dot--active" data-index="0"></span>
+        <span class="cases__dot" data-index="1"></span>
+        <span class="cases__dot" data-index="2"></span>
+      </div>
+    </div>
+  </section>
+
   <!-- ========== 信頼性訴求セクション ========== -->
   <section class="trust">
     <div class="trust__inner">
@@ -97,7 +145,7 @@
         給付金の受給可能性が<br>
         <span class="trust__desc-accent">無料</span>でわかっちゃう♪
       </p>
-      <p class="trust__note">※持ち家（一軒家）の方が対象です</p>
+      <p class="trust__note">※持ち家（戸建て）の方が対象です</p>
 
       <div class="trust__stats">
         <div class="trust__stat-card">
@@ -175,8 +223,8 @@
             <div class="shindan__card shindan__card--active" data-question="1">
               <h2 class="shindan__question">今のお住まいはどちらですか？</h2>
               <div class="shindan__options shindan__options--radio">
-                <button class="shindan__option-radio" data-value="持ち家（一軒家）" data-q="1">
-                  <span>持ち家（一軒家）</span>
+                <button class="shindan__option-radio" data-value="持ち家（戸建て）" data-q="1">
+                  <span>持ち家（戸建て）</span>
                 </button>
                 <button class="shindan__option-radio" data-value="持ち家（マンション）" data-q="1">
                   <span>持ち家（マンション）</span>
@@ -549,7 +597,7 @@
       </p>
       <p class="ineligible-modal__sub">
         本診断は<strong>火災保険にご加入中</strong>の<br>
-        <strong>持ち家（一軒家）</strong>をお持ちの方が対象です。
+        <strong>持ち家（戸建て）</strong>をお持ちの方が対象です。
       </p>
       <button class="btn-cta btn-cta--ineligible" id="js-ineligible-close">
         <span>トップに戻る</span>
@@ -586,11 +634,6 @@
   <!-- ========== フッター ========== -->
   <footer class="footer">
     <div class="footer__inner">
-      <nav class="footer__nav">
-        <a href="https://www.ieno-mikata.com/terms/" class="footer__link" target="_blank" rel="noopener noreferrer">利用規約</a>
-        <a href="https://www.ieno-mikata.com/privacy/" class="footer__link" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>
-        <a href="https://www.ieno-mikata.com/company/" class="footer__link" target="_blank" rel="noopener noreferrer">運営者情報</a>
-      </nav>
       <p class="footer__copy">Copyright &copy; 持ち家の給付金診断 - All Rights Reserved.</p>
     </div>
   </footer>
