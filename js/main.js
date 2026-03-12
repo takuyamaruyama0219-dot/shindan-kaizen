@@ -1,5 +1,5 @@
 /* ============================================
-   持ち家の給付金診断サイト - メインJS
+   持ち家の受給診断サイト - メインJS
    ============================================ */
 
 (function () {
@@ -102,6 +102,7 @@
       // 結果モーダルが開いていれば閉じる
       resultOverlay.classList.remove('is-active');
       document.body.style.overflow = '';
+      stopResultSlider();
       currentStep = 1;
       showCard(currentStep);
       exitDiagnosticMode();
@@ -109,6 +110,7 @@
       // 結果モーダルが開いていれば閉じる
       resultOverlay.classList.remove('is-active');
       document.body.style.overflow = '';
+      stopResultSlider();
       currentStep = targetStep;
       showCard(currentStep);
       if (!document.body.classList.contains('is-diagnostic-mode')) {
@@ -326,6 +328,24 @@
     btn.addEventListener('click', function () {
       var q = this.getAttribute('data-q');
       var checked = document.querySelectorAll('input[name="q' + q + '"]:checked');
+
+      // バリデーション: 未選択チェック
+      var card = this.closest('.shindan__card');
+      var errorEl = card.querySelector('.shindan__error');
+      if (checked.length === 0) {
+        if (!errorEl) {
+          errorEl = document.createElement('p');
+          errorEl.className = 'shindan__error';
+          errorEl.textContent = '上記からご選択ください';
+          this.parentNode.insertBefore(errorEl, this);
+        }
+        errorEl.style.display = '';
+        return;
+      }
+      if (errorEl) {
+        errorEl.style.display = 'none';
+      }
+
       var values = [];
       checked.forEach(function (c) {
         values.push(c.value);
@@ -371,14 +391,185 @@
     low:  'https://s.lmes.jp/landing-qr/2008240489-BzqNLedd?uLand=VdukkE'
   };
 
+  // ---------- 結果スライダー（トップページと同じ無限ループ） ----------
+  var rAutoTimer = null;
+  var rSliderReady = false;
+
+  function initResultSlider() {
+    var track = document.getElementById('js-result-track');
+    var slider = document.getElementById('js-result-slider');
+    var dotsWrap = document.getElementById('js-result-dots');
+    if (!track || !slider || !dotsWrap || rSliderReady) return;
+
+    var prevBtn = document.getElementById('js-result-prev');
+    var nextBtn2 = document.getElementById('js-result-next');
+    var dots = dotsWrap.querySelectorAll('.cases__dot');
+    var isAnimating = false;
+
+    // 元スライドを複製して前後に追加（無限ループ用）
+    var origSlides = track.querySelectorAll('.cases__slide');
+    var slideCount = origSlides.length;
+    origSlides.forEach(function (s) {
+      track.appendChild(s.cloneNode(true));
+    });
+    for (var ci = slideCount - 1; ci >= 0; ci--) {
+      track.insertBefore(origSlides[ci].cloneNode(true), track.firstChild);
+    }
+
+    var allSlides = track.querySelectorAll('.cases__slide');
+    var currentIndex = slideCount;
+
+    function getSlideOffset(index) {
+      var slide = allSlides[index];
+      if (!slide) return 0;
+      return slide.offsetLeft - 16;
+    }
+
+    function updateDots() {
+      var realIndex = ((currentIndex - slideCount) % slideCount + slideCount) % slideCount;
+      dots.forEach(function (d, i) {
+        d.classList.toggle('cases__dot--active', i === realIndex);
+      });
+    }
+
+    function jumpTo(index) {
+      track.style.transition = 'none';
+      currentIndex = index;
+      track.style.transform = 'translateX(-' + getSlideOffset(currentIndex) + 'px)';
+      track.offsetHeight;
+      track.style.transition = '';
+    }
+
+    function goTo(index) {
+      if (isAnimating) return;
+      isAnimating = true;
+      currentIndex = index;
+      track.style.transform = 'translateX(-' + getSlideOffset(currentIndex) + 'px)';
+      updateDots();
+      setTimeout(function () { isAnimating = false; }, 400);
+    }
+
+    track.addEventListener('transitionend', function (e) {
+      if (e.target !== track) return;
+      isAnimating = false;
+      if (currentIndex >= slideCount * 2) {
+        jumpTo(currentIndex - slideCount);
+      } else if (currentIndex < slideCount) {
+        jumpTo(currentIndex + slideCount);
+      }
+    });
+
+    // ドットクリック
+    dots.forEach(function (dot) {
+      dot.addEventListener('click', function () {
+        var idx = parseInt(this.getAttribute('data-index'), 10);
+        goTo(slideCount + idx);
+        resetAuto();
+      });
+    });
+
+    // 矢印ボタン
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        goTo(currentIndex - 1);
+        resetAuto();
+      });
+    }
+    if (nextBtn2) {
+      nextBtn2.addEventListener('click', function (e) {
+        e.stopPropagation();
+        goTo(currentIndex + 1);
+        resetAuto();
+      });
+    }
+
+    // タッチ / マウスドラッグ
+    var startX = 0, currentX = 0, isDragging = false;
+
+    function onStart(x) {
+      isDragging = true;
+      startX = x;
+      currentX = x;
+      track.classList.add('is-dragging');
+    }
+    function onMove(x) {
+      if (!isDragging) return;
+      currentX = x;
+      var diff = currentX - startX;
+      var offset = getSlideOffset(currentIndex);
+      track.style.transform = 'translateX(' + (-offset + diff) + 'px)';
+    }
+    function onEnd() {
+      if (!isDragging) return;
+      isDragging = false;
+      track.classList.remove('is-dragging');
+      var diff = currentX - startX;
+      if (diff < -50) {
+        goTo(currentIndex + 1);
+      } else if (diff > 50) {
+        goTo(currentIndex - 1);
+      } else {
+        goTo(currentIndex);
+      }
+      resetAuto();
+    }
+
+    slider.addEventListener('touchstart', function (e) { onStart(e.touches[0].clientX); }, { passive: true });
+    slider.addEventListener('touchmove', function (e) { onMove(e.touches[0].clientX); }, { passive: true });
+    slider.addEventListener('touchend', onEnd);
+    slider.addEventListener('mousedown', function (e) { e.preventDefault(); onStart(e.clientX); });
+    window.addEventListener('mousemove', function (e) { onMove(e.clientX); });
+    window.addEventListener('mouseup', onEnd);
+
+    // 自動スライド
+    function startAuto() {
+      rAutoTimer = setInterval(function () {
+        goTo(currentIndex + 1);
+      }, 4000);
+    }
+    function resetAuto() {
+      clearInterval(rAutoTimer);
+      startAuto();
+    }
+
+    // 初期位置を公開用関数として保存
+    rSliderReady = true;
+    window._resultSliderStart = function () {
+      jumpTo(slideCount);
+      clearInterval(rAutoTimer);
+      startAuto();
+    };
+
+    jumpTo(currentIndex);
+  }
+
+  function startResultSlider() {
+    if (!rSliderReady) {
+      initResultSlider();
+    }
+    if (window._resultSliderStart) {
+      window._resultSliderStart();
+    }
+  }
+
+  function stopResultSlider() {
+    if (rAutoTimer) {
+      clearInterval(rAutoTimer);
+      rAutoTimer = null;
+    }
+  }
+
   // ---------- 結果表示 ----------
   function showResult() {
     var score = calculateScore();
     var level = getResultLevel(score);
 
-    // LINEボタンのリンク先を設定
-    var lineBtn = document.getElementById('js-line-btn');
-    lineBtn.href = lineUrls[level];
+    // LINEボタンのリンク先を設定（複数ボタン対応）
+    var lineBtns = document.querySelectorAll('.js-line-btn');
+    lineBtns.forEach(function (btn) {
+      btn.href = lineUrls[level];
+    });
 
     // 最終ページをstep0aとしてハッシュに記録
     if (!isPopstateHandling) {
@@ -386,7 +577,11 @@
     }
 
     resultOverlay.classList.add('is-active');
+    resultOverlay.scrollTop = 0;
     document.body.style.overflow = 'hidden';
+
+    // 結果スライダー開始
+    startResultSlider();
   }
 
   // ---------- フローティングCTA表示制御 ----------

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-持ち家の給付金診断サイト (Home Ownership Benefit Eligibility Diagnostic) — a Japanese lead-generation SPA that guides homeowners through a 9-question diagnostic to assess benefit eligibility, then directs them to LINE signup based on their score.
+持ち家の受給診断サイト (Home Ownership Benefit Eligibility Diagnostic) — a Japanese lead-generation SPA that guides homeowners through a 9-question diagnostic to assess benefit eligibility, then directs them to LINE signup based on their score.
 
 ## Development
 
@@ -16,9 +16,9 @@ This is a **pure vanilla HTML/CSS/JS static site** with no build tools, no packa
 ## Architecture
 
 **Single-page app with three files:**
-- `index.html` — all markup (~650 lines), sections: header, hero, cases (実績スライダー), trust, service (contains shindan quiz), result modal, ineligible modal, FAQ, footer, floating CTA
-- `js/main.js` — all logic (~630 lines), wrapped in a single IIFE; includes a separate IIFE for the cases slider (infinite-loop carousel with clone-based wrapping, touch/mouse drag, auto-advance)
-- `css/style.css` — all styles (~1,690 lines), BEM naming, mobile-first with 769px breakpoint
+- `index.html` — all markup (~745 lines), sections: header, hero, cases (実績スライダー), trust, service (contains shindan quiz), result modal, ineligible modal, FAQ, footer, floating CTA
+- `js/main.js` — all logic (~825 lines), wrapped in a single IIFE; includes a separate IIFE for the cases slider (infinite-loop carousel with clone-based wrapping, touch/mouse drag, auto-advance)
+- `css/style.css` — all styles (~1,830 lines), BEM naming, mobile-first with 769px breakpoint
 
 **State management** is via module-scoped variables in the IIFE: `currentStep`, `answers` (object keyed by `q1`–`q9`), `isTransitioning`, `isPopstateHandling`, `hasStarted`.
 

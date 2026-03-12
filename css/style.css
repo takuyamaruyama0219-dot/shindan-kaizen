@@ -114,10 +114,34 @@ button {
 
 /* ---------- ファーストビュー ---------- */
 .hero {
-  background: linear-gradient(180deg, #FFF5ED 0%, #FFECD6 40%, #E8721C 40%, #E8721C 100%);
-  padding: 24px 16px 40px;
+  background: linear-gradient(168deg, #FFFAF5 0%, #FFF5ED 50%, #FFECD6 100%);
+  padding: 32px 16px 40px;
   position: relative;
   overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 200px;
+  height: 200px;
+  background: rgba(232, 114, 28, 0.06);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -40px;
+  left: -40px;
+  width: 160px;
+  height: 160px;
+  background: rgba(232, 114, 28, 0.04);
+  border-radius: 50%;
+  pointer-events: none;
 }
 
 .hero__inner {
@@ -127,281 +151,180 @@ button {
   position: relative;
 }
 
-.hero__sub {
-  font-size: 0.875rem;
+/* リード文 */
+.hero__lead {
+  font-size: 1.15rem;
   font-weight: 700;
-  color: #E8721C;
-  margin-bottom: 4px;
-  letter-spacing: 0.05em;
+  color: #412807;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.hero__lead-highlight {
+  background: linear-gradient(transparent 60%, #FFD700 60%);
+  padding: 0 2px;
+  font-weight: 900;
+}
+
+/* 白カード */
+.hero__card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px 24px 24px;
+  box-shadow: 0 4px 24px rgba(65, 40, 7, 0.08);
+  border-top: 4px solid #E8721C;
 }
 
 .hero__title {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: #412807;
   line-height: 1.4;
   margin-bottom: 8px;
 }
 
-.hero__title-large {
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: #E8721C;
-  display: inline-block;
-  letter-spacing: 0.05em;
-}
-
 .hero__title-accent {
-  font-size: 3rem;
+  font-size: 1.6rem;
   font-weight: 900;
   color: #E8721C;
   display: inline-block;
-  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
   position: relative;
 }
 
-.hero__badge {
+.hero__title-accent::after {
+  content: '';
   position: absolute;
-  top: 0;
-  right: 8px;
-  width: 80px;
-  height: 80px;
-  background: #FFD700;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  left: 0;
+  bottom: 2px;
+  width: 100%;
+  height: 3px;
+  background: #E8721C;
+  border-radius: 2px;
+  opacity: 0.3;
 }
 
-.hero__badge-text {
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: #412807;
-  line-height: 1.4;
-  text-align: center;
+.hero__desc {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 20px;
 }
 
-.hero__badge-text strong {
-  font-size: 1.1rem;
+.hero__desc-accent {
   color: #E8721C;
+  font-weight: 700;
 }
 
-/* スマホモックアップ */
-.hero__phone-wrap {
-  position: relative;
-  width: 240px;
-  margin: 16px auto 0;
-  padding-bottom: 28px;
+/* 統計カード（カード内） */
+.hero__stats {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
 }
 
-.hero__phone {
-  width: 180px;
-  height: 280px;
-  margin: 0 auto;
-  background: #1a1a2e;
-  border-radius: 28px;
-  box-shadow:
-    0 16px 48px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  padding: 8px;
-  position: relative;
+.hero__stat-card {
+  flex: 1;
+  background: #FFF8F2;
+  border-radius: 10px;
+  padding: 14px 8px 10px;
+  text-align: center;
+  border: 1px solid #FFECD6;
 }
 
-/* ノッチ */
-.hero__phone::before {
-  content: '';
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 48px;
-  height: 14px;
-  background: #1a1a2e;
-  border-radius: 0 0 10px 10px;
-  z-index: 2;
+.hero__stat-number {
+  font-weight: 700;
+  color: #E8721C;
+  line-height: 1.1;
 }
 
-/* ノッチ内カメラ */
-.hero__phone::after {
-  content: '';
-  position: absolute;
-  top: 11px;
-  left: 50%;
-  transform: translateX(-50%) translateX(14px);
-  width: 6px;
-  height: 6px;
-  background: #2a2a4a;
-  border-radius: 50%;
-  z-index: 3;
-  box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.2);
+.hero__stat-big {
+  font-size: 2rem;
+  font-weight: 900;
 }
 
-/* 携帯に重なる診断スタートCTA */
-.hero__phone-cta {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
+.hero__stat-number small {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.hero__stat-label {
+  font-size: 0.7rem;
+  color: #888;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* CTA */
+.hero__cta {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  width: 240px;
-  padding: 16px 24px;
-  background: #FFF5ED;
-  color: #E8721C;
-  font-size: 1.0625rem;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto 16px;
+  padding: 18px 24px;
+  background: linear-gradient(135deg, #E8721C, #F28C3C);
+  color: #fff;
+  font-size: 1.125rem;
   font-weight: 900;
   border: none;
   border-radius: 50px;
   box-shadow:
-    0 4px 0 #d4d0c8,
-    0 8px 24px rgba(0, 0, 0, 0.2);
+    0 4px 0 #C45F14,
+    0 6px 20px rgba(232, 114, 28, 0.3);
   cursor: pointer;
   transition: all 0.15s ease;
   letter-spacing: 0.05em;
   font-family: inherit;
+  position: relative;
 }
 
-.hero__phone-cta:hover {
-  transform: translateX(-50%) translateY(-2px);
+.hero__cta:hover {
+  transform: translateY(-2px);
   box-shadow:
-    0 6px 0 #d4d0c8,
-    0 10px 28px rgba(0, 0, 0, 0.25);
+    0 6px 0 #C45F14,
+    0 8px 24px rgba(232, 114, 28, 0.35);
 }
 
-.hero__phone-cta:active {
-  transform: translateX(-50%) translateY(2px);
+.hero__cta:active {
+  transform: translateY(2px);
   box-shadow:
-    0 1px 0 #d4d0c8,
-    0 4px 12px rgba(0, 0, 0, 0.15);
+    0 1px 0 #C45F14,
+    0 3px 10px rgba(232, 114, 28, 0.25);
 }
 
-.hero__phone-cta-arrow {
+.hero__cta-arrow {
   font-size: 1.375rem;
   font-weight: 300;
   line-height: 1;
 }
 
-.hero__phone-screen {
-  width: 100%;
-  height: 100%;
-  background: #FAFAF6;
-  border-radius: 20px;
-  overflow: hidden;
-  padding: 18px 6px 6px;
-}
-
-.hero__phone-content {
+/* チェックリスト（CTA下） */
+.hero__checks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
-  flex-direction: column;
-  height: 100%;
+  justify-content: center;
+  gap: 16px;
 }
 
-.hero__phone-header {
+.hero__check-item {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #888;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 3px;
-  background: #E8721C;
-  margin: -18px -6px 0;
-  padding: 20px 0 6px;
-  border-radius: 20px 20px 0 0;
-}
-
-.hero__phone-header-icon {
-  font-size: 0.55rem;
-}
-
-.hero__phone-header-text {
-  font-size: 0.5rem;
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: 0.02em;
-}
-
-/* スマホモック Q1プレビュー */
-.hero__phone-q1 {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  padding: 6px 6px 4px;
-}
-
-.hero__phone-progress {
-  margin-bottom: 4px;
-}
-
-.hero__phone-progress-text {
-  font-size: 0.4rem;
-  color: #666;
-  font-weight: 500;
-}
-
-.hero__phone-progress-time {
-  font-size: 0.35rem;
-  color: #999;
-  float: right;
-}
-
-.hero__phone-dots {
-  display: flex;
-  gap: 3px;
-  justify-content: center;
-  margin-top: 3px;
-}
-
-.hero__phone-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #D9D9D9;
-}
-
-.hero__phone-dot--current {
-  background: #9E8E7E;
-}
-
-.hero__phone-question {
-  font-size: 0.5rem;
-  font-weight: 700;
-  color: #E8721C;
-  text-align: center;
-  line-height: 1.4;
-  margin: 6px 0;
-}
-
-.hero__phone-options {
-  display: flex;
-  flex-direction: column;
   gap: 4px;
 }
 
-.hero__phone-option {
-  padding: 4px 6px;
-  border: 1px solid #C9B99A;
-  border-radius: 20px;
-  font-size: 0.4rem;
-  font-weight: 500;
-  color: #412807;
-  text-align: center;
-  background: #fff;
-}
-
-.hero__phone-option--selected {
-  border-color: #E8721C;
-  background: #FFF5ED;
-  color: #E8721C;
+.hero__check-item::before {
+  content: '\2713';
+  color: #4CAF50;
   font-weight: 700;
+  font-size: 0.8rem;
 }
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
-
 
 /* ---------- 実績スライダーセクション ---------- */
 .cases {
@@ -1486,96 +1409,33 @@ button {
     padding: 48px 24px 56px;
   }
 
-  .hero__title-large {
-    font-size: 3rem;
+  .hero__lead {
+    font-size: 1.3rem;
+  }
+
+  .hero__card {
+    padding: 36px 40px 28px;
+    max-width: 520px;
+    margin: 0 auto;
   }
 
   .hero__title-accent {
-    font-size: 3.5rem;
+    font-size: 1.85rem;
   }
 
-  .hero__phone-wrap {
-    width: 250px;
-    padding-bottom: 28px;
+  .hero__stats {
+    max-width: 360px;
+    margin: 0 auto 28px;
   }
 
-  .hero__phone {
-    width: 220px;
-    height: 360px;
-    border-radius: 34px;
-    padding: 10px;
+  .hero__cta {
+    max-width: 340px;
+    padding: 20px 28px;
+    font-size: 1.2rem;
   }
 
-  .hero__phone::before {
-    width: 56px;
-    height: 16px;
-    top: 10px;
-  }
-
-  .hero__phone::after {
-    top: 13px;
-    transform: translateX(-50%) translateX(16px);
-    width: 7px;
-    height: 7px;
-  }
-
-  .hero__phone-screen {
-    border-radius: 24px;
-    padding: 20px 8px 8px;
-  }
-
-  .hero__phone-header {
-    margin: -20px -8px 0;
-    padding: 22px 0 8px;
-    border-radius: 24px 24px 0 0;
-  }
-
-  .hero__phone-header-text {
-    font-size: 0.55rem;
-  }
-
-  .hero__phone-cta {
-    width: 280px;
-    padding: 18px 28px;
-    font-size: 1.125rem;
-  }
-
-  .hero__phone-question {
-    font-size: 0.6rem;
-    margin: 8px 0;
-  }
-
-  .hero__phone-option {
-    padding: 5px 8px;
-    font-size: 0.5rem;
-  }
-
-  .hero__phone-dots {
-    gap: 4px;
-  }
-
-  .hero__phone-dot {
-    width: 7px;
-    height: 7px;
-  }
-
-  .hero__phone-progress-text {
-    font-size: 0.45rem;
-  }
-
-  .hero__badge {
-    width: 100px;
-    height: 100px;
-    right: 60px;
-    top: 10px;
-  }
-
-  .hero__badge-text {
-    font-size: 0.8rem;
-  }
-
-  .hero__badge-text strong {
-    font-size: 1.3rem;
+  .hero__checks {
+    gap: 20px;
   }
 
   .trust__stats {
